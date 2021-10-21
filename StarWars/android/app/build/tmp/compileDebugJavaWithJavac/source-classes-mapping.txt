@@ -1,0 +1,14 @@
+com/starwars/MainApplication.java
+ com.starwars.MainApplication
+ com.starwars.MainApplication$1
+com/starwars/MainActivity.java
+ com.starwars.MainActivity
+com/starwars/BuildConfig.java
+ com.starwars.BuildConfig
+com/starwars/ReactNativeFlipper.java
+ com.starwars.ReactNativeFlipper
+ com.starwars.ReactNativeFlipper$1
+ com.starwars.ReactNativeFlipper$2
+ com.starwars.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
