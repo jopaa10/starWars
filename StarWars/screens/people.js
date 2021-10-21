@@ -150,5 +150,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingTop: windowWidth * 0.05,
     color: 'black',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 16,
   },
 });
