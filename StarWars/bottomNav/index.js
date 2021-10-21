@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 //screens
 import Movies from '../screens/movies';
 import Favourites from '../screens/favourites';
-import People from '../screens/people';
+import People, {peopleDetails} from '../screens/people';
 
 const StarWarsBottomNav = createBottomTabNavigator();
 
@@ -12,7 +12,11 @@ const BottomNavigation = () => {
   return (
     <StarWarsBottomNav.Navigator>
       <StarWarsBottomNav.Screen name="Movies" component={Movies} />
-      <StarWarsBottomNav.Screen name="People" component={People} />
+      <StarWarsBottomNav.Screen
+        name="People"
+        component={peopleDetails}
+        options={{headerShown: false}}
+      />
       <StarWarsBottomNav.Screen name="Favourites" component={Favourites} />
     </StarWarsBottomNav.Navigator>
   );
