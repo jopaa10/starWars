@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 
-const Details = () => {
+const Details = ({route}) => {
   return (
-    <View>
-      <Text>Bla bla</Text>
+    <View style={{backgroundColor: 'white', height: 700}}>
+      <Text style={{color: 'black'}}>{route.params.user}</Text>
+      <Text style={{color: 'black'}}>{route.params.hair}</Text>
     </View>
   );
 };

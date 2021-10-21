@@ -90,7 +90,8 @@ const People = () => {
                 key={item.key}
                 onPress={() =>
                   navigation.navigate('Details', {
-                    name: item.name,
+                    user: item.name,
+                    hair: item.hair_color,
                   })
                 }>
                 <View style={styles.peopleList}>

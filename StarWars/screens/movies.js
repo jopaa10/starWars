@@ -92,7 +92,7 @@ const Movies = () => {
                 key={item.key}
                 onPress={() =>
                   navigation.navigate('Details', {
-                    name: item.name,
+                    user: item.opening_crawl,
                   })
                 }>
                 <View style={styles.peopleList}>
