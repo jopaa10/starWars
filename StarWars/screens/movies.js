@@ -41,7 +41,7 @@ const Movies = () => {
     fetch(`https://swapi.dev/api/films/`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         setPeopleData(data.results);
       })
       .catch(error => {
@@ -55,11 +55,6 @@ const Movies = () => {
 
     await AsyncStorage.setItem('movies-fav', JSON.stringify(newFavList));
   };
-
-  /* useEffect(() => {
-    let peopleFav = AsyncStorage.getItem('people-fav');
-    console.log(peopleFav);
-  }, []); */
 
   const navigation = useNavigation();
 
