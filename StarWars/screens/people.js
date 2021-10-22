@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import {createStackNavigator} from '@react-navigation/stack';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //dimension
 const windowWidth = Dimensions.get('window').width;
@@ -53,7 +53,7 @@ const People = () => {
     let newFavList = [...favourites, person];
     setFavourites(newFavList);
 
-    // await AsyncStorage.setItem('people-fav', JSON.stringify(newFavList));
+    await AsyncStorage.setItem('people-fav', JSON.stringify(newFavList));
   };
 
   /* useEffect(() => {
