@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,11 @@ import {
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ScrollView} from 'react-native-gesture-handler';
+
 //dimension
 const windowWidth = Dimensions.get('window').width;
+
+import {FavContext} from '../App';
 
 const wait = timeout => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -23,7 +26,9 @@ const Favourites = () => {
   let [movieData, setMovieData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(async () => {
+  const {state, dispatch} = useContext(FavContext);
+
+  /*   useEffect(async () => {
     try {
       data = await AsyncStorage.getItem('people-fav');
       movieData = await AsyncStorage.getItem('movies-fav');
@@ -38,9 +43,9 @@ const Favourites = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, []); */
 
-  const removeFromFav = async () => {
+  /*   const removeFromFav = async () => {
     await AsyncStorage.removeItem('people-fav');
     onRefresh();
   };
@@ -78,20 +83,23 @@ const Favourites = () => {
     }
 
     wait(2000).then(() => setRefreshing(false));
-  }, []);
+  }, []); */
+
+  console.log(state);
 
   return (
     <ScrollView
-      refreshControl={
+    /* refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
-      <View style={{backgroundColor: 'white', height: 'auto'}}>
+      } */
+    >
+      {/* <View style={{backgroundColor: 'white', height: 'auto'}}>
         {data.length < 1 || data == null ? (
           <View>
             <Text>There is no people in favourites</Text>
           </View>
         ) : (
-          data.map(item => {
+          state.map(item => {
             return (
               <View style={styles.peopleList}>
                 <View key={item.key}>
@@ -108,8 +116,28 @@ const Favourites = () => {
             );
           })
         )}
-      </View>
-      <View style={{backgroundColor: 'white', height: 'auto'}}>
+      </View> */}
+      {state.map(item => {
+        return (
+          <View style={styles.peopleList}>
+            <View key={item.key}>
+              <Image
+                source={require('../images/square2.png')}
+                style={styles.image}
+              />
+              <Text style={styles.text}>{item.content.title}</Text>
+              <Text style={styles.text}>{item.content.name}</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  dispatch({type: 'REMOVE_FROM_FAV', payload: item.id})
+                }>
+                <Text style={styles.text}>Remove from favorites</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      })}
+      {/* <View style={{backgroundColor: 'white', height: 'auto'}}>
         {movieData.length < 1 || movieData == null ? (
           <View>
             <Text>There is no movies in favourites</Text>
@@ -132,7 +160,7 @@ const Favourites = () => {
             );
           })
         )}
-      </View>
+      </View> */}
     </ScrollView>
   );
 };
@@ -162,6 +190,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     alignItems: 'center',
     alignContent: 'center',
+    backgroundColor: 'white',
   },
   image: {
     borderColor: 'black',

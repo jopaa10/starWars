@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -25,6 +25,8 @@ const peopleStack = createStackNavigator();
 
 import Details from '../peopleDetailScreen/details';
 
+import {FavContext} from '../App';
+
 export const peopleDetails = () => (
   <peopleStack.Navigator>
     <peopleStack.Screen name="People" component={People} />
@@ -36,6 +38,8 @@ const People = () => {
   const [peopleData, setPeopleData] = useState([]);
   const [search, setSearch] = useState('');
   const [favourites, setFavourites] = useState([]);
+
+  const {state, dispatch} = useContext(FavContext);
 
   useEffect(() => {
     fetch(`https://swapi.dev/api/people/`)
@@ -101,7 +105,10 @@ const People = () => {
                       style={styles.image}
                     />
                     <Text style={styles.text}>{item.name}</Text>
-                    <TouchableOpacity onPress={() => addToFav(item)}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        dispatch({type: 'ADD_TO_FAV', payload: {content: item}})
+                      }>
                       <Text style={styles.text}>Add to favorites</Text>
                     </TouchableOpacity>
                   </View>
